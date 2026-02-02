@@ -4,7 +4,7 @@ services:
     image: ${IMAGES_PREFIX:-}app-php
     restart: unless-stopped
     environment:
-      SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
+      SERVER_NAME: ${SERVER_NAME:-localhost}, php:8001
       DEFAULT_URI: https://${SERVER_NAME:-localhost}:${HTTPS_PORT:-443}
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
@@ -22,8 +22,8 @@ services:
       - caddy_config:/config
     ports:
       - name: http
-        target: 80
-        published: ${HTTP_PORT:-80}
+        target: 8001
+        published: ${HTTP_PORT:-8001}
         protocol: tcp
       - name: https
         target: 443
