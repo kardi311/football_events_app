@@ -11,7 +11,7 @@ final class FoulEventMessage extends AbstractEventMessage
     public function __construct(
         public string $playerName,
         public string $teamName,
-        public int $matchId,
+        public string $matchId,
         public int $minute,
         public int $second
     )
@@ -22,9 +22,9 @@ final class FoulEventMessage extends AbstractEventMessage
     public static function fromPayload(array $payload): self
     {
         return new self(
-            $payload['playerName'],
-            $payload['teamName'],
-            $payload['matchId'],
+            $payload['player'],
+            $payload['team_id'],
+            $payload['match_id'],
             $payload['minute'],
             $payload['second']
         );

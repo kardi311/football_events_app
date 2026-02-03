@@ -27,28 +27,31 @@ final class FoulEventMessageHandler
 
     public function __invoke(FoulEventMessage $message): void
     {
-        $teamId = $this->teamRepository->findByName($message->teamName);
-        if (!$teamId) {
+        $team = $this->teamRepository->findByName($message->teamName);
+        if (!$team) {
             $team = $this->teamRepository->addTeam($message->teamName);
-            if (!$team || !$team->getId()) {
-                throw new \InvalidArgumentException('Team not found');
-            }
-            $teamId = $team->getId();
+
+        }
+        if (!$team->getId()) {
+            throw new \InvalidArgumentException('Team not found');
         }
 
-        $playerId = $this->playerRepository->findByFullName($message->playerName);
-        if (!$playerId) {
+        $teamId = $team->getId();
+
+        $player = $this->playerRepository->findByFullName($message->playerName);
+        if (!$player) {
             $player = $this->playerRepository->addPlayer($message->playerName, $teamId);
-            if (!$player || !$player->getId()) {
-                throw new \InvalidArgumentException('Player not found');
-            }
-            $playerId = $player->getId();
         }
+
+        if (!$player) {
+            throw new \InvalidArgumentException('Player not found');
+        }
+
         $foulEvent = new FoulEvent();
         $foulEvent->setMinute($message->minute);
         $foulEvent->setSecond($message->second);
-        $foulEvent->setPlayerId($playerId);
-        $foulEvent->setTeamId($teamId);
+        $foulEvent->setTeamId($team->getId());
+        $foulEvent->setPlayerId($player->getId());
         $foulEvent->setMatchId($message->matchId);
 
         $this->foulEventRepository->save($foulEvent);

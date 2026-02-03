@@ -26,7 +26,7 @@ class EventValueResolver implements ValueResolverInterface
             return [];
         }
 
-        $payload = $request->query->all();
+        $payload = $request->getPayload()->all();
 
         if (!isset($payload['type'])) {
             throw new \InvalidArgumentException('Event type is required');

@@ -19,7 +19,7 @@ class PlayerRepository extends ServiceEntityRepository
     public function findByFullName(string $fullName): ?Player
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('CONCAT(p.first_name, \' \', p.last_name) = :val')
+            ->andWhere('CONCAT(p.firstName, \' \', p.lastName) = :val')
             ->setParameter("val", $fullName)
             ->getQuery()
             ->getOneOrNullResult();

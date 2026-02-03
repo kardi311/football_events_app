@@ -29,8 +29,8 @@ class FoulEvent
     #[ORM\Column]
     private ?int $second = null;
 
-    #[ORM\Column]
-    private ?int $matchId = null;
+    #[ORM\Column(length: 255)]
+    private ?string $matchId = null;
 
     public function getId(): ?int
     {
@@ -92,12 +92,12 @@ class FoulEvent
         return $this;
     }
 
-    public function getMatchId(): ?int
+    public function getMatchId(): ?string
     {
         return $this->matchId;
     }
 
-    public function setMatchId(int $matchId): static
+    public function setMatchId(string $matchId): static
     {
         $this->matchId = $matchId;
 
