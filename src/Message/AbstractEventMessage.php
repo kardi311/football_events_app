@@ -6,6 +6,5 @@ class AbstractEventMessage
 {
     public function __construct(public string $type)
     {
-
     }
 }

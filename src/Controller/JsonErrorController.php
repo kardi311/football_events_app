@@ -7,7 +7,7 @@ use Throwable;
 
 class JsonErrorController
 {
-    public function show(Throwable $exception)
+    public function show(Throwable $exception): JsonResponse
     {
         return new JsonResponse(['error' => $exception->getMessage()], $exception->getCode() > 0 ? $exception->getCode() : 500);
     }

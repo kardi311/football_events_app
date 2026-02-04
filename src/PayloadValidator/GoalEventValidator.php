@@ -6,6 +6,10 @@ use App\Exception\InvalidApiRequestException;
 
 class GoalEventValidator
 {
+    /**
+     * @param mixed[] $payload
+     * @return void
+     */
     public function validate(array $payload): void
     {
         if (!isset($payload['type'])) {

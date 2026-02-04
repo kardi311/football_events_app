@@ -13,11 +13,14 @@ class StatisticsProvider
     public function __construct(
         private readonly FoulEventRepository $foulEventRepository,
         private readonly GoalEventRepository $goalEventRepository
-    )
-    {
-
+    ) {
     }
 
+    /**
+     * @param string $matchId
+     * @param string|null $teamId
+     * @return mixed[]
+     */
     public function getStatistics(string $matchId, ?string $teamId = null): array
     {
         $foulEvents = $this->foulEventRepository->findAllForMatch($matchId, $teamId);
@@ -43,7 +46,7 @@ class StatisticsProvider
     /**
      * @param FoulEvent[] $foulEvents
      * @param GoalEvent[] $goalEvents
-     * @return array
+     * @return mixed[]
      */
     private function getEvents(array $foulEvents, array $goalEvents): array
     {

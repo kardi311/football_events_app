@@ -16,9 +16,7 @@ final class FoulEventMessageHandler
     public function __construct(
         private readonly FoulEventRepository $foulEventRepository,
         private readonly EventDispatcherInterface $eventDispatcher,
-    )
-    {
-
+    ) {
     }
 
     public function __invoke(FoulEventMessage $message): FoulEvent

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\ValueResolver;
 
-use App\Entity\AbstractEvent;
 use App\Entity\FoulEvent;
 use App\Entity\GoalEvent;
 use App\Exception\InvalidApiRequestException;
@@ -24,6 +23,11 @@ class EventValueResolver implements ValueResolverInterface
     ) {
     }
 
+    /**
+     * @param Request $request
+     * @param ArgumentMetadata $argument
+     * @return AbstractEventMessage[]
+     */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $argumentType = $argument->getType();
@@ -49,7 +53,6 @@ class EventValueResolver implements ValueResolverInterface
             case GoalEvent::EVENT_TYPE:
                 $this->goalEventValidator->validate($payload);
                 return [GoalEventMessage::fromPayload($payload)];
-
         }
 
         throw new InvalidApiRequestException('unsupported type');

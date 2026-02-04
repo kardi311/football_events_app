@@ -15,11 +15,14 @@ final class GoalEventMessage extends AbstractEventMessage
         public string $matchId,
         public int $minute,
         public string $assistingPlayer
-    )
-    {
+    ) {
         parent::__construct(GoalEvent::EVENT_TYPE);
     }
 
+    /**
+     * @param mixed[] $payload
+     * @return self
+     */
     public static function fromPayload(array $payload): self
     {
         return new self(

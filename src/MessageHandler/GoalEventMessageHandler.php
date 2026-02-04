@@ -16,9 +16,7 @@ final class GoalEventMessageHandler
     public function __construct(
         private readonly GoalEventRepository $goalEventRepository,
         private readonly EventDispatcherInterface $eventDispatcher,
-    )
-    {
-
+    ) {
     }
 
     public function __invoke(GoalEventMessage $message): GoalEvent

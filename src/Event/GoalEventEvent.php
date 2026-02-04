@@ -6,6 +6,5 @@ class GoalEventEvent
 {
     public function __construct(public readonly int $goalEventId)
     {
-
     }
 }

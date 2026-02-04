@@ -9,12 +9,12 @@
         "php": ">=8.4.17",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "api-platform/doctrine-orm": "^4.2",
-        "api-platform/symfony": "^4.2",
+        "api-platform/doctrine-orm": "^4.2.15",
+        "api-platform/symfony": "^4.2.15",
         "doctrine/doctrine-bundle": "^3.2.2",
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.6.2",
-        "nelmio/cors-bundle": "^2.6",
+        "nelmio/cors-bundle": "^2.6.1",
         "phpdocumentor/reflection-docblock": "^5.6.6",
         "phpstan/phpdoc-parser": "^2.3.2",
         "symfony/asset": "8.0.*",
@@ -39,16 +39,21 @@
         "codeception/module-asserts": ">=3.3",
         "codeception/module-phpbrowser": ">=4",
         "codeception/module-rest": "^3.4.3",
+        "phpmd/phpmd": "^2.5",
+        "phpstan/phpstan": "^2.1.38",
         "phpunit/phpunit": "^11.5.50",
+        "slevomat/coding-standard": "~8.0",
+        "squizlabs/php_codesniffer": ">=4.0.1",
         "symfony/browser-kit": "8.0.*",
         "symfony/css-selector": "8.0.*",
         "symfony/flex": "^2.10",
         "symfony/http-client": "8.0.*",
         "symfony/maker-bundle": "^1.65.1",
-        "zenstruck/foundry": "^2.8"
+        "zenstruck/foundry": "^2.9"
     },
     "config": {
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
             "symfony/flex": true,
             "symfony/runtime": true

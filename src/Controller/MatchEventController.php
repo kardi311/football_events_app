@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Exception\InvalidApiRequestException;
 use App\Message\AbstractEventMessage;
 use App\ValueResolver\EventValueResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,8 +18,7 @@ final class MatchEventController extends AbstractController
     public function index(
         #[MapRequestPayload(resolver: EventValueResolver::class)] AbstractEventMessage $event,
         MessageBusInterface $messageBus
-    ): JsonResponse
-    {
+    ): JsonResponse {
         try {
             $envelope = $messageBus->dispatch($event);
         } catch (\Throwable $exception) {

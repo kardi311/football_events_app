@@ -14,8 +14,7 @@ final class StatisticsController extends AbstractController
     public function index(
         Request $request,
         StatisticsProvider $statisticsProvider
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $matchId = $request->query->get('match_id');
         if (!$matchId) {
             throw new \InvalidArgumentException('match_id is required', 400);
