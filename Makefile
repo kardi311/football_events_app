@@ -8,4 +8,7 @@ analysis:
 standards:
 	vendor/bin/phpcs --colors --standard=cs-ruleset.xml src//
 
+test:
+	vendor/bin/phpunit
+
 all: analysis
