@@ -1,15 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\FoulEventRepository;
+use App\Repository\GoalEventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
-#[ORM\Entity(repositoryClass: FoulEventRepository::class)]
-class FoulEvent
+#[ORM\Entity(repositoryClass: GoalEventRepository::class)]
+class GoalEvent
 {
-    public const EVENT_TYPE = 'foul';
+    public const EVENT_TYPE = 'goal';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,16 +18,16 @@ class FoulEvent
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $player = null;
+    private ?string $scorer = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $assistingPlayer = null;
 
     #[ORM\Column(length: 255)]
     private ?string $teamId = null;
 
     #[ORM\Column]
     private ?int $minute = null;
-
-    #[ORM\Column]
-    private ?int $second = null;
 
     #[ORM\Column(length: 255)]
     private ?string $matchId = null;
@@ -37,21 +38,26 @@ class FoulEvent
         return $this->id;
     }
 
-    public function setId(int $id): static
+    public function getScorer(): ?string
     {
-        $this->id = $id;
+        return $this->scorer;
+    }
+
+    public function setScorer(string $scorer): static
+    {
+        $this->scorer = $scorer;
 
         return $this;
     }
 
-    public function getPlayer(): ?string
+    public function getAssistingPlayer(): ?string
     {
-        return $this->player;
+        return $this->assistingPlayer;
     }
 
-    public function setPlayer(string $player): static
+    public function setAssistingPlayer(string $assisting_player): static
     {
-        $this->player = $player;
+        $this->assistingPlayer = $assisting_player;
 
         return $this;
     }
@@ -76,18 +82,6 @@ class FoulEvent
     public function setMinute(int $minute): static
     {
         $this->minute = $minute;
-
-        return $this;
-    }
-
-    public function getSecond(): ?int
-    {
-        return $this->second;
-    }
-
-    public function setSecond(int $second): static
-    {
-        $this->second = $second;
 
         return $this;
     }

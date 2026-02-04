@@ -1,32 +1,33 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Message;
 
-use App\Entity\FoulEvent;
+use App\Entity\GoalEvent;
 use Symfony\Component\Messenger\Attribute\AsMessage;
 
 #[AsMessage('sync')]
-final class FoulEventMessage extends AbstractEventMessage
+final class GoalEventMessage extends AbstractEventMessage
 {
     public function __construct(
-        public string $player,
+        public string $scorer,
         public string $teamId,
         public string $matchId,
         public int $minute,
-        public int $second
+        public string $assistingPlayer
     )
     {
-        parent::__construct(FoulEvent::EVENT_TYPE);
+        parent::__construct(GoalEvent::EVENT_TYPE);
     }
 
     public static function fromPayload(array $payload): self
     {
         return new self(
-            $payload['player'],
+            $payload['scorer'],
             $payload['team_id'],
             $payload['match_id'],
             $payload['minute'],
-            $payload['second']
+            $payload['assisting_player']
         );
     }
 }

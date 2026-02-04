@@ -2,31 +2,31 @@
 
 namespace App\Repository;
 
-use App\Entity\FoulEvent;
+use App\Entity\GoalEvent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<FoulEvent>
+ * @extends ServiceEntityRepository<GoalEvent>
  */
-class FoulEventRepository extends ServiceEntityRepository
+class GoalEventRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FoulEvent::class);
+        parent::__construct($registry, GoalEvent::class);
     }
 
-    public function save(FoulEvent $foulEvent): void
+    public function save(GoalEvent $goalEvent): void
     {
         $em = $this->getEntityManager();
-        $em->persist($foulEvent);
+        $em->persist($goalEvent);
         $em->flush();
     }
 
     /**
      * @param string $matchId
      * @param string|null $teamId
-     * @return FoulEvent[]
+     * @return GoalEvent[]
      */
     public function findAllForMatch(string $matchId, ?string $teamId = null): array
     {

@@ -4,7 +4,7 @@ namespace App\PayloadValidator;
 
 use App\Exception\InvalidApiRequestException;
 
-class FoulEventValidator
+class GoalEventValidator
 {
     public function validate(array $payload): void
     {
@@ -13,7 +13,7 @@ class FoulEventValidator
         }
 
         if (!isset($payload['match_id']) || !isset($payload['team_id'])) {
-            throw new InvalidApiRequestException('match_id and team_id are required for foul events');
+            throw new InvalidApiRequestException('match_id and team_id are required for goal events');
         }
     }
 }
